@@ -1,14 +1,24 @@
 const Joi = require('joi'); //class is returned
+const logger = require('./logger');
 const express = require('express'); //this returns a function
+const helmet = require('helmet');
 const app = new express(); //this is an instance of the above function. app is object here.
 
 // console.log(app);
  // this is a middleware created by "express.json()" and app.use will be using it.
  //this will take the input body Json and output in the form of req.body
- app.use(express.json());
+ //below are built-in middleware functions.
 
- //the below are the middle ware function too. please make sure to put next() function or else the request will be loading.
- 
+app.use(express.json()); //this will take json as input and parse it into req.body
+app.use(express.urlencoded({extended: true})); //this will take key value as input and parse it into req.body
+//css, images etc will be kept in the folder called 'public'. 
+//Now if we hit "localhost/readme.txt", that will display the file.
+app.use(express.static('public')); 
+app.use(helmet());
+
+//the below are the middle ware function too. please make sure to put next() function or else the request will be loading.
+ //however, we need to put these in a logger file. Hence putting them in a logger.js file
+/*
 app.use(function(req, res, next) {
     console.log('logging...');
     next();
@@ -17,6 +27,10 @@ app.use(function(req, res, next) {
     console.log('authenticating...');
     next();
 })
+*/
+
+app.use(logger.log);
+app.use(logger.auth);
 
 const cars = [
     {id:1, name: "car1"},
