@@ -3,8 +3,20 @@ const express = require('express'); //this returns a function
 const app = new express(); //this is an instance of the above function. app is object here.
 
 // console.log(app);
-app.use(express.json()); // this is a middleware created by "express.json()" and app.use will be using it.
+ // this is a middleware created by "express.json()" and app.use will be using it.
+ //this will take the input body Json and output in the form of req.body
+ app.use(express.json());
 
+ //the below are the middle ware function too. please make sure to put next() function or else the request will be loading.
+ 
+app.use(function(req, res, next) {
+    console.log('logging...');
+    next();
+})
+app.use(function(req, res, next) {
+    console.log('authenticating...');
+    next();
+})
 
 const cars = [
     {id:1, name: "car1"},
@@ -60,7 +72,7 @@ app.post('/api/cars',(req,res) => {
         // res.status(400).send(result.error);
         //to display just the error message access first element of details array and message tag from Json.
         res.status(400).send(result.error.details[0].message);
-        
+        return;
     }
     if(!req.body.name_from_json || req.body.name_from_json.length <3){
         //400 bad request
