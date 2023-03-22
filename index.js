@@ -2,9 +2,14 @@ const Joi = require('joi'); //class is returned
 const logger = require('./logger');
 const express = require('express'); //this returns a function
 const helmet = require('helmet');
+const morgan = require('morgan');
 const app = new express(); //this is an instance of the above function. app is object here.
 
-// console.log(app);
+//the below are to set the development environments. 
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+//here 'env' will get the NODE_ENV defined above or the default would be 'development'
+console.log(`app:${app.get('env')}`);
+
  // this is a middleware created by "express.json()" and app.use will be using it.
  //this will take the input body Json and output in the form of req.body
  //below are built-in middleware functions.
@@ -15,7 +20,10 @@ app.use(express.urlencoded({extended: true})); //this will take key value as inp
 //Now if we hit "localhost/readme.txt", that will display the file.
 app.use(express.static('public')); 
 app.use(helmet());
-
+if(app.get('env') === 'development'){
+    app.use(morgan('tiny')); //this is a http calls logger like "GET /api/cars 200 70 - 7.685 ms"
+    console.log('morgan is enabled');
+}
 //the below are the middle ware function too. please make sure to put next() function or else the request will be loading.
  //however, we need to put these in a logger file. Hence putting them in a logger.js file
 /*
