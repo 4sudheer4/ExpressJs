@@ -1,3 +1,4 @@
+const config = require('config');
 const Joi = require('joi'); //class is returned
 const logger = require('./logger');
 const express = require('express'); //this returns a function
@@ -24,6 +25,8 @@ if(app.get('env') === 'development'){
     app.use(morgan('tiny')); //this is a http calls logger like "GET /api/cars 200 70 - 7.685 ms"
     console.log('morgan is enabled');
 }
+
+console.log('App name: '+ config.get('name'));
 //the below are the middle ware function too. please make sure to put next() function or else the request will be loading.
  //however, we need to put these in a logger file. Hence putting them in a logger.js file
 /*
