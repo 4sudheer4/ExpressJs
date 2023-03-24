@@ -6,10 +6,6 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const app = new express(); //this is an instance of the above function. app is object here.
 
-//the below are to set the development environments. 
-console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
-//here 'env' will get the NODE_ENV defined above or the default would be 'development'
-console.log(`app:${app.get('env')}`);
 
  // this is a middleware created by "express.json()" and app.use will be using it.
  //this will take the input body Json and output in the form of req.body
@@ -21,6 +17,12 @@ app.use(express.urlencoded({extended: true})); //this will take key value as inp
 //Now if we hit "localhost/readme.txt", that will display the file.
 app.use(express.static('public')); 
 app.use(helmet());
+
+//the below are to set the development environments. 
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+//here 'env' will get the NODE_ENV defined above or the default would be 'development'
+console.log(`app:${app.get('env')}`);
+
 if(app.get('env') === 'development'){
     app.use(morgan('tiny')); //this is a http calls logger like "GET /api/cars 200 70 - 7.685 ms"
     console.log('morgan is enabled');
@@ -39,7 +41,7 @@ app.use(function(req, res, next) {
     next();
 })
 */
-
+//the above middlewares are kept in logger.js file.
 app.use(logger.log);
 app.use(logger.auth);
 
