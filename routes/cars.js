@@ -35,7 +35,7 @@ router.get('/:year/:month', (req, res) => {
     res.send(req.params);
 });
 
-router.post('/api/cars',(req,res) => {
+router.post('/',(req,res) => {
 
     //below is the validation for the given input by the end-user.
     //check postman for how the input looks like 
@@ -73,7 +73,7 @@ router.post('/api/cars',(req,res) => {
 });
 
 //update the data
-router.put('/api/cars/:id', (req,res) => {
+router.put('/:id', (req,res) => {
     //lookup the course
     //if not exists return 404
 
@@ -102,7 +102,7 @@ router.put('/api/cars/:id', (req,res) => {
     //return the updated course
 });
 
-router.delete('/api/cars/:id',(req,res) =>{
+router.delete('/:id',(req,res) =>{
     //lookup for the course
     //err if not available
 
