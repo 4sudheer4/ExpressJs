@@ -1,7 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
+//replacing '/api/cars' with ''
+/*
 router.get('/api/cars',(req,res) => {
+    res.send(cars);
+});
+*/
+
+router.get('/',(req,res) => {
     res.send(cars);
 });
 
