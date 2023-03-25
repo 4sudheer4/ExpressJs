@@ -41,7 +41,9 @@ app.use(function(req, res, next) {
     next();
 })
 */
-//the above middlewares are kept in logger.js file.
+//the above middlewares are kept in logger.js file. 
+//This will get executed once we perform a get call and
+// "app.use(express.json());" gets executed in the middlewares first, followed by the below middleware.
 app.use(logger.log);
 app.use(logger.auth);
 
