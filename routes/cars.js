@@ -1,7 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-//replacing '/api/cars' with ''
+const cars = [
+    {id:1, name: "car1"},
+    {id:2, name: "car2"},
+    {id:3, name: "car3"}
+]
+
+//replacing '/api/cars' with '/'
+//similarly all the below routes with '/api/cars' will be replaced with '/'
+
 /*
 router.get('/api/cars',(req,res) => {
     res.send(cars);
@@ -15,7 +23,7 @@ router.get('/',(req,res) => {
 // /api/cars/1
 //check about array.find here: https://www.javascripttutorial.net/es6/javascript-array-find/
 
-router.get('/api/cars/:id',(req,res) => {
+router.get('/:id',(req,res) => {
     const car = cars.find( (element) =>
         element.id === parseInt(req.params.id) 
     );
@@ -23,7 +31,7 @@ router.get('/api/cars/:id',(req,res) => {
     res.send(car); 
 });
 
-router.get('/api/cars/:year/:month', (req, res) => {
+router.get('/:year/:month', (req, res) => {
     res.send(req.params);
 });
 
