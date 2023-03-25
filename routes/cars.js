@@ -16,6 +16,7 @@ router.get('/api/cars',(req,res) => {
 });
 */
 
+//GET ALL THE RECORDS
 router.get('/',(req,res) => {
     res.send(cars);
 });
@@ -23,6 +24,7 @@ router.get('/',(req,res) => {
 // /api/cars/1
 //check about array.find here: https://www.javascripttutorial.net/es6/javascript-array-find/
 
+//GETTING DATA BASED ON ID
 router.get('/:id',(req,res) => {
     const car = cars.find( (element) =>
         element.id === parseInt(req.params.id) 
@@ -35,6 +37,7 @@ router.get('/:year/:month', (req, res) => {
     res.send(req.params);
 });
 
+//POSTING DATA
 router.post('/',(req,res) => {
 
     //below is the validation for the given input by the end-user.
@@ -102,6 +105,7 @@ router.put('/:id', (req,res) => {
     //return the updated course
 });
 
+//DELETING THE DATA
 router.delete('/:id',(req,res) =>{
     //lookup for the course
     //err if not available
