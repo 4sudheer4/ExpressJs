@@ -1,7 +1,7 @@
 const express = require('express');
 const router_homepage = express.Router();
 
-app.get('/', (req, res) =>{
+router_homepage.get('/', (req, res) =>{
     res.send('Hello World!!!');
 });
 
