@@ -46,8 +46,8 @@ app.use(logger.log);
 app.use(logger.auth);
 
 //here we are creating a variable that stores all the api routes defined in routes>cars.js module(file). Look cars.js for more info.
-const cars_ = require('.routes/cars'); //loading module.
-const homepage = require('.routes/homepage');
+const cars_ = require('./routes/cars'); //loading module.
+const homepage = require('./routes/homepage');
 //once we load the routes, call below
 //first argument is all the routes. for any route that start with 'api/cars' use this router 'cars_'
 //hence change all "/api/cars" with "/". Example: replace "/api/cars/:id" with "/:id" in cars.js module.
