@@ -60,7 +60,7 @@ const cars_ = require('./cars') //loading module.
 
 //once we load the routes, call below
 //first argument is all the routes. for any route that start with 'api/cars' use this router 'cars_'
-//hence change all "api/cars" with "". Example: replace "/api/cars/:id" with "/:id" in cars.js module.
+//hence change all "/api/cars" with "/". Example: replace "/api/cars/:id" with "/:id" in cars.js module.
 app.use('api/cars', cars_);
 
 // process.env is a method which helps to decide the port. This will create an environment variable called 'PORT' below.
